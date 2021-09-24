@@ -60,7 +60,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       -
         name: Build and push Main
-        if: "startsWith(github.ref, 'refs/head/main')"
+        if: "startsWith(github.ref, 'refs/heads/main')"
         run: echo 'Bonjour nous sommes dans main'
 #         id: docker_build_master
 #         uses: docker/build-push-action@v2
