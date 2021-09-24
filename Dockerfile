@@ -4,13 +4,12 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci
-
-COPY . .
-
 FROM base as test
+RUN npm ci
+COPY . .
 RUN ["yarn","test"]
 
 FROM base as build
-EXPOSE 3000
+RUN npm ci
+COPY . .
 CMD [ "yarn","start" ]
