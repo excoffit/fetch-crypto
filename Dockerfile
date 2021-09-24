@@ -9,8 +9,8 @@ RUN npm ci
 COPY . .
 
 FROM base as test
-RUN ["npm","test"]
+RUN ["yarn","test"]
 
 FROM base as build
 EXPOSE 3000
-CMD [ "npm","start" ]
+CMD [ "yarn","start" ]
