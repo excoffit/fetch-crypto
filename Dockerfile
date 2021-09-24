@@ -2,14 +2,14 @@ FROM node as base
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY ./my-app/package*.json ./
+RUN npm ci
+COPY ./my-app .
 
 FROM base as test
-RUN npm ci
-COPY . .
+
 RUN ["yarn","test"]
 
 FROM base as build
-RUN npm ci
-COPY . .
+
 CMD [ "yarn","start" ]
