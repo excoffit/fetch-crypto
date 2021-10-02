@@ -26,20 +26,40 @@ const App = () => {
 	
     const [list, setList] = React.useState(initialList);
 	const [list2, setList2] = React.useState(initialList);
+	const [list3, setList3] = React.useState(initialList);
+
 
   function handleAdd(name) {
+	  console.log(name)
 	const newlist = []
     setList(newlist.concat( name ));
+	setList3(newlist);
   }
   
   function handleAdd2(name) {
 	const newlist2 = []
 	const newlist = []
 	setList(newlist);
+	setList3(newlist);
     setList2(newlist2.concat( name ));
   }
   
+  function handleAdd3(name) {
+	  console.log(name)
+	const newlist3 = []
+    setList3(newlist3.concat( name ));
+	setList(newlist3);
+  }
+  
+ 
  function log(){
+	 axios.get('https://api.coingecko.com/api/v3/search/trending',{
+	})
+		.then(res => {
+			const cryptos = res.data;
+			handleAdd3(cryptos.coins)
+			
+		})
  }
 function fetchtoptencrypto(){
 	axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false',{
@@ -69,6 +89,14 @@ function fetchtoptencryptospe(symbol){
 			
 			<button key={item.id} onClick={() => fetchtoptencryptospe(item.id)}>
 				{item.symbol}
+			</button>
+			
+		))}
+		
+		{list3.map((item) => (
+			
+			<button key={item.item.id} onClick={() => fetchtoptencryptospe(item.item.id)}>
+				{item.item.name}
 			</button>
 			
 		))}
@@ -106,10 +134,10 @@ function fetchtoptencryptospe(symbol){
 		))}
 		
         <button onClick={fetchtoptencrypto}>
-		Top 10 Crypto
+		Top 100 Crypto
 		</button>
 		<button onClick={log}>
-		Top 10 Crypt
+		Top 7 Trendy Cryptos
 		</button>
       </header>
     </div>
