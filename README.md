@@ -9,4 +9,4 @@ Pour lancer l'application il suffit de lancer la commande suivante :
 
 `docker run -p 3000:3000 --name app-fetch excoffit/fetch-crypto:main`
 
-Et de se connecter sur : localhost:3000
+Et de se connecter sur : [localhost:3000](localhost:3000)
